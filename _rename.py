@@ -4,8 +4,17 @@ import re
 from pathlib import Path
 from _conf import *
 
+def rename_repl(match):
+    before = match.group(1)
+    after = globals().get(before)
+    if after is None:
+        after = match.group(0)
+    else:
+        print(f"\tRenamed {before} to {after}")
+    return after
+
 def rename(string):
-    return re.sub(pattern=r"{{\s+(.+)\s+}}", repl=lambda m:[print(f"\tRenamed {m.group(1)}"),globals().get(m.group(1))][-1], string=string)
+    return re.sub(pattern=r"{{\s+(.+?)\s+}}", repl=rename_repl, string=string)
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
