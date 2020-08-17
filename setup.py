@@ -3,7 +3,7 @@ import os
 import setuptools
 # import <lib>
 
-DESCRIPTION = ""
+DESCRIPTION = "{{ DESCRIPTION }}"
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
@@ -22,8 +22,8 @@ def setup_package():
         author_email="cabernet.rock@gmail.com",
         license="MIT",
         project_urls={
-            "Bug Reports" : "https://github.com/iwasakishuto/python-package-template/issues",
-            "Source Code" : "https://github.com/iwasakishuto/python-package-template",
+            "Bug Reports" : "https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}/issues",
+            "Source Code" : "https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}",
             "Say Thanks!" : "https://twitter.com/cabernet_rock",
         },
         packages=setuptools.find_packages(),
@@ -41,6 +41,7 @@ def setup_package():
         ],
         entry_points = {
             "console_scripts": [
+                "command=lib.cli:func",
         ],
     },
     )

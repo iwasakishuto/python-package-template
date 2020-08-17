@@ -10,14 +10,14 @@ except ModuleNotFoundError:
     here     = os.path.abspath(os.path.dirname(__file__))
     REPO_DIR = os.path.dirname(here)
     sys.path.append(REPO_DIR)
-    print(f"You didn't install '<LIB>', so add {REPO_DIR} to search path for modules.")
+    print(f"You didn't install '{{ REPOSITORY_NAME }}', so add {REPO_DIR} to search path for modules.")
     from lib.utils._warnings import LibImprementationWarning
 
 # def pytest_addoption(parser):
-#     parser.addoption("--<lib>-warnings", choices=["error", "ignore", "always", "default", "module", "once"], default="ignore")
+#     parser.addoption("--{{ MODULE_NAME }}-warnings", choices=["error", "ignore", "always", "default", "module", "once"], default="ignore")
 
 def pytest_configure(config):
-    action = config.getoption("<lib>_warnings")
+    action = config.getoption("{{ MODULE_NAME }}_warnings")
     warnings.simplefilter(action, category=LibImprementationWarning)
 
 # @pytest.fixture

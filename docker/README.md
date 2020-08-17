@@ -1,6 +1,6 @@
-# Using python-package-template via Docker
+# Using {{ PACKAGE_NAME }} via Docker
 
-This directory contains `Dockerfile` to make it easy to get up and running with python-package-template via [Docker](http://www.docker.com/).
+This directory contains `Dockerfile` to make it easy to get up and running with {{ PACKAGE_NAME }} via [Docker](http://www.docker.com/).
 
 ## Installing Docker
 
@@ -19,7 +19,7 @@ Build the container and start a Jupyter Notebook
 $ make notebook
 ```
 
-Build the container and mount [`examples`](https://nbviewer.jupyter.org/github/iwasakishuto/python-package-template/blob/master/examples/), then start a Jupyter Notebook
+Build the container and mount [`examples`](https://nbviewer.jupyter.org/github/iwasakishuto/{{ REPOSITORY_NAME }}/blob/master/examples/), then start a Jupyter Notebook
 
 ```sh
 $ make examples
