@@ -1,7 +1,7 @@
 #coding: utf-8
-__all__ = ["LibImprementationError"]
+__all__ = ["{{ PACKAGE_NAME }}ImprementationError"]
 
-class LibImprementationError(Exception):
+class {{ PACKAGE_NAME }}ImprementationError(Exception):
     """ 
     Warnings that developers will resolve. 
     Developers are now solving in a simple stupid way.
