@@ -33,7 +33,9 @@ def setup_package():
           "tests": ["pytest"],
         },
         classifiers=[
+            "Development Status :: 1 - Planning",
             "Environment :: Console",
+            "Intended Audience :: Other Audience",
             "License :: OSI Approved :: MIT License",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3.8",
