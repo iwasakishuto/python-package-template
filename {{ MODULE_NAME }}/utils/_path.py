@@ -4,7 +4,7 @@ from pathlib import Path
 from .coloring_utils  import toBLUE
 
 __all__ = [
-    "UTILS_DIR", "MODULE_DIR", "TEMPLATES_DIR", "REPO_DIR", "<LIB>_DIR",
+    "UTILS_DIR", "MODULE_DIR", "REPO_DIR",
 ]
 
 UTILS_DIR     = os.path.dirname(os.path.abspath(__file__))  # path/to/{{ MODULE_NAME }}/utils
