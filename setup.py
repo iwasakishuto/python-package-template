@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
 import setuptools
-# import <lib>
+import {{ MODULE_NAME }}
 
 DESCRIPTION = "{{ DESCRIPTION }}"
 
@@ -13,8 +13,8 @@ with open("requirements.txt", mode="r") as f:
 
 def setup_package():
     metadata = dict(
-        # name="<LIB>",
-        # version=<lib>.__version__,
+        name="{{ PACKAGE_NAME }}",
+        version={{ MODULE_NAME }}.__version__,
         description=DESCRIPTION,
         long_description=LONG_DESCRIPTION,
         long_description_content_type="text/markdown",
