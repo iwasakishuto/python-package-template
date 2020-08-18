@@ -14,5 +14,6 @@ from .generic_utils import handleTypeError
 from .generic_utils import mk_class_get
 from .generic_utils import MonoParamProcessor
 from .generic_utils import str_strip
+from .generic_utils import now_str
 
 from .monitor_utils import ProgressMonitor

@@ -62,3 +62,6 @@ class MonoParamProcessor(argparse.Action):
 
 def str_strip(string):
     return re.sub(pattern=r"[\s 　]+", repl=" ", string=string).strip()
+
+def now_str():
+    return datetime.datetime.now().strftime("%Y-%m-%d@%H.%M.%S")
