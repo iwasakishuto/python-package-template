@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "{{ PACKAGE_NAME }}"
+version = "0.1.0"
+description = "{{ DESCRIPTION }}"
+authors = ["{{ AUTHOR }} <cabernet.rock@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}"
+homepage = "https://{{ AUTHOR }}.github.io/{{ REPOSITORY_NAME }}/"
+readme = "README.md"
+classifiers=[
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Environment :: Console",
+    "Environment :: MacOS X",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    {include = "{{ MODULE_NAME }}"}
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/issues"
+"Source Code" = "https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}"
+"Say Thanks!" = "https://twitter.com/{{ TWITTER_USERNAME }}"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+flake8 = "^3.9.2"
+isort = "^5.8.0"
+mypy = "^0.812"
+black = "^21.5b1"
+pylint = "^2.8.2"
+
+[tool.poetry.scripts]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

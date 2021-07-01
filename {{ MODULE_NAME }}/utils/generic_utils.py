@@ -3,66 +3,146 @@ import re
 import argparse
 import datetime
 
-from .coloring_utils import toRED, toBLUE, toGREEN
+from typing import List,Any
 
-def handleKeyError(lst, **kwargs):
-    k,v = kwargs.popitem()
-    if v not in lst:
-        lst = ', '.join([f"'{e}'" for e in lst])
-        raise KeyError(f"Please choose the argment {toBLUE(k)} from {lst}. you chose {toRED(v)}")
+from .colorings import toRED, toBLUE, toGREEN
+from ._warnings import KeyError
 
-def handleTypeError(types, **kwargs):
-    type2str = lambda t: re.sub(r"<class '(.*?)'>", r"\033[34m\1\033[0m", str(t))
-    k,v = kwargs.popitem()
-    if not any([isinstance(v,t) for t in types]):
-        str_true_types  = ', '.join([type2str(t) for t in types])
-        srt_false_type = type2str(type(v))
-        if len(types)==1:
-            err_msg = f"must be {str_true_types}"
-        else:
-            err_msg = f"must be one of {str_true_types}"
-        raise TypeError(f"{toBLUE(k)} {err_msg}, not {toRED(srt_false_type)}")
+NoneType = type(None)
 
-def mk_class_get(all_classes={}, gummy_abst_class=[], genre=""):
-    if not isinstance(gummy_abst_class, list):
-        gummy_abst_class = [gummy_abst_class]
-    def get(identifier, **kwargs):
-        if isinstance(identifier, str):
-            identifier = identifier.lower()
-            handleKeyError(lst=list(all_classes.keys()), identifier=identifier)
-            instance = all_classes.get(identifier)(**kwargs)
-        else:
-            handleTypeError(types=[str] + gummy_abst_class, identifier=identifier)
-            instance = identifier
-        return instance
-    get.__doc__ = f"""
-    Retrieves a {{ PACKAGE_NAME }} {genre.capitalize()} instance.
-    @params identifier : {genre.capitalize()} identifier, string name of a {genre}, or
-                         a {{ PACKAGE_NAME }} {genre.capitalize()} instance.
-    @params kwargs     : parametes for class initialization.
-    @return {genre:<11}: A {{ PACKAGE_NAME }} {genre.capitalize()} instance.
+def handleKeyError(lst:List[Any], **kwargs):
+    """Check whether all ``kwargs.values()`` in the ``lst``.
+
+    Args:
+        lst (List[Any])   : candidates.
+        kwargs (dict)     : ``key`` is the varname that is easy to understand when an error occurs
+
+    Examples:
+        >>> from {{ MODULE_NAME }}.utils import handleKeyError
+        >>> handleKeyError(lst=range(3), val=1)
+        >>> handleKeyError(lst=range(3), val=100)
+        KeyError: Please choose the argment val from ['0', '1', '2']. you chose 100
+        >>> handleKeyError(lst=range(3), val1=1, val2=2)
+        >>> handleKeyError(lst=range(3), val1=1, val2=100)
+        KeyError: Please choose the argment val2 from ['0', '1', '2']. you chose 100
+
+    Raise:
+        KeyError: If ``kwargs.values()`` not in the ``lst``
     """
-    return get
+    for k,v in kwargs.items():
+        if v not in lst:
+            lst = ', '.join([f"'{toGREEN(e)}'" for e in lst])
+            raise KeyError(f"Please choose the argment {toBLUE(k)} from [{lst}]. you chose {toRED(v)}")
 
-class MonoParamProcessor(argparse.Action):
+def class2str(class_:object) -> str:
+    """Convert class to str.
+    
+    Args:
+        class_ (object): class object
+
+    Returns:
+        str : Class name.
+        
+    Examples:
+        >>> from {{ MODULE_NAME }}.utils import class2str
+        >>> class2str(str)
+        'str'
+        >>> class2str(tuple)
+        'tuple'
     """
-    Receive an argument as a dictionary.
-    =====================================================
-    (sample)
-    $ python argparse_handler.py --dict_param foo=a --dict_param bar=b
-    >>> {'foo': 'a', 'bar': 'b'}
+    return re.sub(r"<class '(.*?)'>", r"\1", str(class_))
+
+def handleTypeError(types:List=[Any], **kwargs):
+    """Check whether all types of ``kwargs.values()`` match any of ``types``.
+
+    Args:
+        types (List[Any]) : Candidate types.
+        kwargs (dict)     : ``key`` is the varname that is easy to understand when an error occurs
+
+    Examples:
+        >>> from {{ MODULE_NAME }}.utils import handleTypeError
+        >>> handleTypeError(types=[str], val="foo")
+        >>> handleTypeError(types=[str, int], val=1)
+        >>> handleTypeError(types=[str, int], val=1.)
+        TypeError: val must be one of ['str', 'int'], not float
+        >>> handleTypeError(types=[str], val1="foo", val2="bar")
+        >>> handleTypeError(types=[str, int], val1="foo", val2=1.)
+        TypeError: val2 must be one of ['str', 'int'], not float
+
+    Raise:
+        TypeError: If the types of ``kwargs.values()`` are none of the ``types``
     """
-    def __call__(self, parser, namespace, values, option_strings=None):
-        param_dict = getattr(namespace,self.dest,[])
-        if param_dict is None:
-            param_dict = {}
+    types = tuple([NoneType if e is None else e for e in types])
+    for k,v in kwargs.items():
+        if not isinstance(v, types):
+            str_true_types  = ', '.join([f"'{toGREEN(class2str(t))}'" for t in types])
+            srt_false_type = class2str(type(v))
+            if len(types)==1:
+                err_msg = f"must be {str_true_types}"
+            else:
+                err_msg = f"must be one of [{str_true_types}]"
+            raise TypeError(f"{toBLUE(k)} {err_msg}, not {toRED(srt_false_type)}")
 
-        k, v = values.split("=")
-        param_dict[k] = v
-        setattr(namespace, self.dest, param_dict)
+def str_strip(string:str) -> str:
+    """Convert all consecutive whitespace  characters to `' '` (half-width whitespace), then return a copy of the string with leading and trailing whitespace removed.
 
-def str_strip(string):
-    return re.sub(pattern=r"[\s 　]+", repl=" ", string=string).strip()
+    Args:
+        string (str) : string
 
-def now_str():
-    return datetime.datetime.now().strftime("%Y-%m-%d@%H.%M.%S")
+    Returns:
+        str : A copy of the string with leading and trailing whitespace removed
+
+    Example:
+        >>> from {{ MODULE_NAME }}.utils import str_strip
+        >>> str_strip(" hoge   ")
+        'hoge'
+        >>> str_strip(" ho    ge   ")
+        'ho ge'
+        >>> str_strip("  ho    g　e")
+        'ho g e'
+    """
+    return re.sub(pattern=r"[\s 　]+", repl=" ", string=str(string)).strip()
+
+def now_str(tz=None, fmt="%Y-%m-%d@%H.%M.%S"):
+    """Returns new datetime string representing current time local to ``tz`` under the control of an explicit format string.
+
+    Args:
+        tz (datetime.timezone) : Timezone object. If no ``tz`` is specified, uses local timezone.
+        fmt (str)              : format string. See `Python Documentation <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes>`_
+
+    Returns:
+        str : A datetime string.
+
+    Example:
+        >>> from {{ MODULE_NAME }}.utils import now_str
+        >>> now_str()
+        '2020-09-14@22.31.17'
+        >>>now_str(fmt="%A, %d. %B %Y %I:%M%p")
+        Monday, 14. September 2020 10:31PM'
+        >>> now_str(tz=datetime.timezone.utc)
+        '2020-09-14@13.31.17'
+    """
+    return datetime.datetime.now(tz=tz).strftime(fmt)
+
+def flatten_dual(lst:List[List[Any]]) -> List[Any]:
+    """Flatten double list.
+
+    Args:
+        lst (List[List[Any]]): Dual list.
+
+    Returns:
+        List[Any] : Flattened single list.
+
+    Example:
+        >>> from pycharmers.utils import flatten_dual
+        >>> flatten_dual([[1,2,3],[4,5,6]])
+        [1, 2, 3, 4, 5, 6]
+        >>> flatten_dual([[[1,2,3]],[4,5,6]])
+        [[1, 2, 3], 4, 5, 6]
+        >>> flatten_dual(flatten_dual([[[1,2,3]],[4,5,6]]))
+        TypeError: 'int' object is not iterable
+
+    Raise:
+        TypeError: If list is not a dual list.
+    """
+    return [element for sublist in lst for element in sublist]

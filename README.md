@@ -1,29 +1,29 @@
 # python-package-template
 
-<!-- ![header](https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}/blob/master/image/header.png?raw=true) -->
 ![header](https://github.com/iwasakishuto/python-package-template/blob/master/image/header.png?raw=true)
 [![PyPI version](https://badge.fury.io/py/{{ REPOSITORY_NAME }}.svg)](https://pypi.org/project/{{ REPOSITORY_NAME }}/)
-[![GitHub version](https://badge.fury.io/gh/iwasakishuto%2F{{ REPOSITORY_NAME }}.svg)](https://github.com/iwasakishuto/{{ REPOSITORY_NAME }})
-![Python package](https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}/workflows/Python%20package/badge.svg)
-![Upload Python Package](https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}/workflows/Upload%20Python%20Package/badge.svg)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}/blob/master/LICENSE)
+[![GitHub version](https://badge.fury.io/gh/{{ AUTHOR }}%2F{{ REPOSITORY_NAME }}.svg)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }})
+[![Execute Python package](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/execute_python_package.yml/badge.svg)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/execute_python_package.yml/badge.svg)
+[![Upload Python Package](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/upload_python_package.yml/badge.svg)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/upload_python_package.yml/badge.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/blob/master/LICENSE)
 
 {{ DESCRIPTION }}
 
 ## Installation
 
-1. Install **{{ PACKAGE_NAME }}** (There are two ways to install):
-    - **Install from PyPI (recommended):**
-        ```sh
-        $ sudo pip install {{ PACKAGE_NAME }}
-        ```
-   - **Alternatively: install PyGuitar from the GitHub source:**
-       ```sh
-       $ git clone https://github.com/iwasakishuto/{{ REPOSITORY_NAME }}.git
-       $ cd {{ REPOSITORY_NAME }}
-       $ sudo python setup.py install
-       ```
+I recommend you to use these tools to **avoid the chaos** of the python environment. See other sites for how to install these tools.
 
-## Quick example
+### Pyenv + Poetry
 
-- **[example notebooks](https://nbviewer.jupyter.org/github/iwasakishuto/{{ REPOSITORY_NAME }}/blob/master/examples/)**
+- [Pyenv](https://github.com/pyenv/pyenv) is a python installation manager.
+- [Poetry](https://python-poetry.org/) is a packaging and dependency manager.
+
+```sh
+$ git clone https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}.git
+$ cd {{ REPOSITORY_NAME }}
+$ pyenv install 3.8.9
+$ pyenv local 3.8.9
+$ python -V
+Python 3.8.9
+$ poetry install 
+```

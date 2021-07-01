@@ -5,7 +5,7 @@ import pytest
 from data import TestData
 import warnings
 try:
-    from gummy.utils._warnings import {{ PACKAGE_NAME_CODE }}ImprementationWarning
+    from {{ MODULE_NAME }}.utils._warnings import {{ PACKAGE_NAME_CODE }}ImprementationWarning
 except ModuleNotFoundError:
     here     = os.path.abspath(os.path.dirname(__file__))
     REPO_DIR = os.path.dirname(here)
