@@ -2,7 +2,6 @@
 import os
 import re
 from pathlib import Path
-from _conf import *
 
 def rename_repl(match):
     before = match.group(1)
@@ -19,6 +18,14 @@ def rename(string):
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 if __name__ == "__main__":
+    PACKAGE_NAME = REPOSITORY_NAME  = input("> Package Name (Repository Name): ")
+    PACKAGE_NAME_CODE = PACKAGE_NAME.replace("-", "")
+    REPOSITORY_NAME   = PACKAGE_NAME_CODE
+    MODULE_NAME       = input("> Module Name: ")
+    DESCRIPTION       = input("> Description: ")
+    AUTHOR            = input("> Author: ")
+    AUTHOR_EMAIL      = input("> Author's Email: ")
+    TWITTER_USERNAME  = input("> Twitter Username: @")
     p = Path(HERE)
     for path in p.glob("**/*"):
         rela_path = str(path.resolve().relative_to(HERE))
