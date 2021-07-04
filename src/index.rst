@@ -6,12 +6,16 @@
 Welcome to {{ PACKAGE_NAME }}'s documentation!
 ===============================================
 
+Contents
+--------
+
 .. toctree::
    :maxdepth: 5
-   :caption: Contents:
+
+   {{ MODULE_NAME }}
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
