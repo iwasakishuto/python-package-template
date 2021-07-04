@@ -37,6 +37,8 @@ mypy = "^0.812"
 black = "^21.5b1"
 pylint = "^2.8.2"
 Sphinx = "^4.0.2"
+sphinxemoji = "^0.1.8"
+sphinx-togglebutton = "^0.2.3"
 
 [tool.poetry.scripts]
 

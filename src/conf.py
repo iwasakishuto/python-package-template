@@ -27,6 +27,9 @@ author = '{{ AUTHOR }}'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+# import matplotlib
+# import IPython
+
 extensions = [
     'sphinxext.opengraph',         # pip install sphinxext-opengraph
     'sphinx.ext.autodoc',          # Include documentation from docstrings.
@@ -35,7 +38,15 @@ extensions = [
     'sphinx.ext.todo',             # Support for todo items.
     'sphinx.ext.napoleon',         # Support for NumPy and Google style docstrings
     'sphinx.ext.githubpages',      # Publish HTML docs in GitHub Pages
+    'sphinx.ext.graphviz',         # Enable Graphvis
     'sphinx.ext.autosectionlabel', # Allow reference sections using its title
+    'sphinxemoji.sphinxemoji',     # Emoji
+    'sphinx_fontawesome',          # FontAwsome
+    'sphinx_togglebutton',         # Add a "toggle button"
+    # 'IPython.sphinxext.ipython_console_highlighting', # 
+    # 'IPython.sphinxext.ipython_directive',            # Additional directive for ipython::
+    # 'matplotlib.sphinxext.plot_directive',            # Additional directive for plot::
+    # 'sphinx_plotly_directive',                        # Additional directive for plotly::
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -58,6 +69,8 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+# html_favicon = logo = "../images/favicon.png"
+html_show_sphinx = False
 
 # How to sort.
 autodoc_member_order = "bysource"
@@ -68,7 +81,10 @@ autodoc_member_order = "bysource"
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-# sphinxext.opengraph
+# [autosammary]
+autosummary_generate = True
+
+# [opengraph]
 ogp_site_url = "https://iwasakishuto.github.io/{{ REPOSITORY_NAME }}/"
 ogp_image = ""
 ogp_description_length = 200
