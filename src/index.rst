@@ -7,10 +7,8 @@ Welcome to {{ PACKAGE_NAME }}'s documentation!
 ===============================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 5
    :caption: Contents:
-
-
 
 Indices and tables
 ==================
