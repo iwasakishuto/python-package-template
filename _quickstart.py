@@ -1,31 +1,50 @@
-#coding: utf-8
+# coding: utf-8
 import os
 import re
 from pathlib import Path
 
-def rename_repl(match):
-    before = match.group(1)
-    after = globals().get(before)
+CONFIGURATION = {}
+HERE = os.path.abspath(os.path.dirname(__file__))
+
+
+def set_configuration() -> None:
+    REPOSITORY_NAME = os.path.basename(HERE)
+    PACKAGE_NAME = input(f"> Package Name ({REPOSITORY_NAME}): ")
+    if len(PACKAGE_NAME) == 0:
+        PACKAGE_NAME = REPOSITORY_NAME
+    PACKAGE_NAME_CODE = PACKAGE_NAME.replace("-", "")
+    CONFIGURATION.update(
+        {
+            "REPOSITORY_NAME": REPOSITORY_NAME,
+            "PACKAGE_NAME": PACKAGE_NAME,
+            "PACKAGE_NAME_CODE": PACKAGE_NAME_CODE,
+            "MODULE_NAME": input("> Module Name: "),
+            "DESCRIPTION": input("> Description: "),
+            "AUTHOR": input("> Author: "),
+            "AUTHOR_EMAIL": input("> Author's Email: "),
+            "TWITTER_USERNAME": input("> Twitter Username: @"),
+        }
+    )
+
+
+def replace(match: re.Match) -> str:
+    before: str = match.group(1)
+    after: str = CONFIGURATION.get(before)
     if after is None:
         after = match.group(0)
     else:
-        print(f"\tRenamed {before} to {after}")
+        print(f"\tRenamed from {before} to {after}")
     return after
 
-def rename(string):
-    return re.sub(pattern=r"{{\s+(.+?)\s+}}", repl=rename_repl, string=string)
 
-HERE = os.path.abspath(os.path.dirname(__file__))
+def rename(string: str) -> str:
+    return re.sub(
+        pattern=r"{{(?:\s+)?([A-Z_]+?)(?:\s+)?}}", repl=replace, string=string
+    )
+
 
 if __name__ == "__main__":
-    PACKAGE_NAME = REPOSITORY_NAME  = input("> Package Name (Repository Name): ")
-    PACKAGE_NAME_CODE = PACKAGE_NAME.replace("-", "")
-    REPOSITORY_NAME   = PACKAGE_NAME_CODE
-    MODULE_NAME       = input("> Module Name: ")
-    DESCRIPTION       = input("> Description: ")
-    AUTHOR            = input("> Author: ")
-    AUTHOR_EMAIL      = input("> Author's Email: ")
-    TWITTER_USERNAME  = input("> Twitter Username: @")
+    set_configuration()
     p = Path(HERE)
     for path in p.glob("**/*"):
         rela_path = str(path.resolve().relative_to(HERE))

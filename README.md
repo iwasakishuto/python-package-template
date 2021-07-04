@@ -1,3 +1,10 @@
+```sh
+# Run this program to prepare the environment for your package.
+$ python3 _quickstart.py
+```
+
+***
+
 # python-package-template
 
 ![header](https://github.com/iwasakishuto/python-package-template/blob/master/image/header.png?raw=true)
