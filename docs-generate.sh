@@ -1,6 +1,6 @@
 #!/bin/bash	
-# chmod +x mkdocs.sh	
-# ./mkdocs.sh	
+# chmod +x docs-generate.sh	
+# ./docs-generate.sh	
 
 function logging() {	
   echo -e "\033[0;32m$1\033[0m"	

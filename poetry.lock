@@ -514,6 +514,17 @@ python-versions = "*"
 sphinx = ">=1.8"
 
 [[package]]
+name = "sphinxext-opengraph"
+version = "0.4.2"
+description = "Sphinx Extension to enable OGP support"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+sphinx = ">=2.0"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -561,7 +572,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ec554b12293318e443aabf5f25539f37f5976c14b9a0a15e6a5b9165be76a7b0"
+content-hash = "f5d1d10d0448fea5b47e467f78690d69ddda6d441f5b06b0c4f5d9a278584296"
 
 [metadata.files]
 alabaster = [
@@ -853,6 +864,10 @@ sphinxcontrib-serializinghtml = [
 ]
 sphinxemoji = [
     {file = "sphinxemoji-0.1.8.tar.gz", hash = "sha256:3da5d1e33c0bc4fa9506420f02b73234868d10a1b243ee15ae2111f118a43f72"},
+]
+sphinxext-opengraph = [
+    {file = "sphinxext-opengraph-0.4.2.tar.gz", hash = "sha256:5da1a6eaab25e377b841f506ef7d7c44b539428f3d6094ccc16d1dfd3ef65501"},
+    {file = "sphinxext_opengraph-0.4.2-py3-none-any.whl", hash = "sha256:a51f2604f9a5b6c0d25d3a88e694d5c02e20812dc0e482adf96c8628f9109357"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
