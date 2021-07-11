@@ -4,7 +4,9 @@ from ._exceptions import *
 from ._path import *
 from ._warnings import *
 from . import generic_utils
+from . import argparse_utils
 
+from .argparse_utils import DictParamProcessor
 from .generic_utils import handleKeyError
 from .generic_utils import handleTypeError
 from .generic_utils import class2str
