@@ -13,6 +13,7 @@ def set_configuration() -> None:
     if len(PACKAGE_NAME) == 0:
         PACKAGE_NAME = REPOSITORY_NAME
     PACKAGE_NAME_CODE = PACKAGE_NAME.replace("-", "")
+    AUTHOR = input("> Author (GitHub username): @")
     CONFIGURATION.update(
         {
             "REPOSITORY_NAME": REPOSITORY_NAME,
@@ -20,12 +21,13 @@ def set_configuration() -> None:
             "PACKAGE_NAME_CODE": PACKAGE_NAME_CODE,
             "MODULE_NAME": input("> Module Name: "),
             "DESCRIPTION": input("> Description: "),
-            "AUTHOR": input("> Author: "),
+            "AUTHOR": AUTHOR,
             "AUTHOR_EMAIL": input("> Author's Email: "),
             "TWITTER_USERNAME": input("> Twitter Username: @"),
+            "PROJECT_URL": f"https://github.com/{ AUTHOR }/{REPOSITORY_NAME}",
+            "DOCUMENTATION_URL": f"https://{ AUTHOR }.github.io/{REPOSITORY_NAME}"
         }
     )
-
 
 def replace(match: re.Match) -> str:
     before: str = match.group(1)
