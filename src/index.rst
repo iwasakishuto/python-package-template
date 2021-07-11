@@ -6,6 +6,10 @@
 Welcome to {{ PACKAGE_NAME }}'s documentation!
 ===============================================
 
+|header|
+
+{{ DESCRIPTION }}
+
 Contents
 --------
 
@@ -20,3 +24,7 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. |header| image:: _images/header.png
+   :target: {{ PROJECT_URL }}
+   :class: full-width

@@ -7,7 +7,7 @@ $ python3 _quickstart.py
 
 # python-package-template
 
-![header](https://github.com/iwasakishuto/python-package-template/blob/master/image/header.png?raw=true)
+![header](https://github.com/iwasakishuto/python-package-template/blob/master/src/_images/header.png?raw=true)
 [![PyPI version](https://badge.fury.io/py/{{ REPOSITORY_NAME }}.svg)](https://pypi.org/project/{{ REPOSITORY_NAME }}/)
 [![GitHub version](https://badge.fury.io/gh/{{ AUTHOR }}%2F{{ REPOSITORY_NAME }}.svg)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }})
 [![Execute Python package](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/execute_python_package.yml/badge.svg)](https://github.com/{{ AUTHOR }}/{{ REPOSITORY_NAME }}/actions/workflows/execute_python_package.yml/badge.svg)
@@ -32,5 +32,5 @@ $ pyenv install 3.8.9
 $ pyenv local 3.8.9
 $ python -V
 Python 3.8.9
-$ poetry install 
+$ poetry install
 ```

@@ -43,7 +43,7 @@ extensions = [
     'sphinxemoji.sphinxemoji',     # Emoji
     'sphinx_fontawesome',          # FontAwsome
     'sphinx_togglebutton',         # Add a "toggle button"
-    # 'IPython.sphinxext.ipython_console_highlighting', # 
+    # 'IPython.sphinxext.ipython_console_highlighting', #
     # 'IPython.sphinxext.ipython_directive',            # Additional directive for ipython::
     # 'matplotlib.sphinxext.plot_directive',            # Additional directive for plot::
     # 'sphinx_plotly_directive',                        # Additional directive for plotly::
@@ -70,7 +70,9 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-# html_favicon = logo = "../images/favicon.png"
+html_css_files = ['custom.css']
+html_js_files = ['custom.js']
+html_favicon = logo = "./_images/favicon.png"
 html_show_sphinx = False
 
 # How to sort.
@@ -86,8 +88,8 @@ todo_include_todos = True
 autosummary_generate = True
 
 # [opengraph]
-ogp_site_url = "https://iwasakishuto.github.io/{{ REPOSITORY_NAME }}/"
-ogp_image = ""
+ogp_site_url = "{{ PROJECT_URL }}/"
+ogp_image = "{{ DOCUMENTATION_URL }}/_images/header.png"
 ogp_description_length = 200
 ogp_type = "article"
 ogp_custom_meta_tags = [
