@@ -44,7 +44,7 @@ sphinx_fontawesome = "^0.0.6"
 sphinx-rtd-theme = "^0.5.2"
 
 [tool.poetry.scripts]
-command-name = "{{ MODULE_NAME }}.cli.main:main"
+command-name = "{{ MODULE_NAME }}.cli.main:func"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
