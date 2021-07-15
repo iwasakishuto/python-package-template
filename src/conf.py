@@ -13,6 +13,7 @@
 import re
 import os
 import sys
+import notfound
 sys.path.insert(0, os.path.abspath('../'))
 
 
@@ -87,6 +88,11 @@ todo_include_todos = True
 # [autosammary]
 autosummary_generate = True
 
+# # [matplotlib.directive]
+# plot_include_source         = True   # Default value for the include-source option.
+# plot_html_show_source_link  = False  # Whether to show a link to the source in HTML.
+# plot_html_show_formats      = False  # Whether to show links to the files in HTML.
+
 # [opengraph]
 ogp_site_url = "{{ PROJECT_URL }}/"
 ogp_image = "{{ DOCUMENTATION_URL }}/_images/header.png"
@@ -98,3 +104,10 @@ ogp_custom_meta_tags = [
     '<meta name="twitter:card" content="summary">',
     f'<meta name="twitter:image:src" content="{ogp_image}">',
 ]
+
+# [notfound]
+notfound_urls_prefix = f"/{project}/"
+notfound_context = {
+    'title': 'Page not found',
+    'body': '<h1>Page not found</h1>\n\nThanks for trying.',
+}
