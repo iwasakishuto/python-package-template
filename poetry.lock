@@ -693,6 +693,14 @@ python-versions = "*"
 Sphinx = ">=1.5.0"
 
 [[package]]
+name = "sphinx-notfound-page"
+version = "0.7.1"
+description = "Sphinx extension to build a 404 page with absolute URLs"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "sphinx-rtd-theme"
 version = "0.5.2"
 description = "Read the Docs theme for Sphinx"
@@ -893,7 +901,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "51054a9f447d3c789b08d8fb488ef522d98cb77ff5849062feaf44b4b31992a5"
+content-hash = "181329a90aba623845c66b99865bf3a575a34e81903f3135e18f1f704fca4fef"
 
 [metadata.files]
 alabaster = [
@@ -1379,6 +1387,10 @@ sphinx = [
 ]
 sphinx-fontawesome = [
     {file = "sphinx_fontawesome-0.0.6.tar.gz", hash = "sha256:fa38d32f1654ad61f442096965f4069c074f37d7f2fadfa37f46b393938a5bdb"},
+]
+sphinx-notfound-page = [
+    {file = "sphinx-notfound-page-0.7.1.tar.gz", hash = "sha256:01888b45b29a6f81785576bd64ab62015900496b130f7326b4d557bb5ff07787"},
+    {file = "sphinx_notfound_page-0.7.1-py3-none-any.whl", hash = "sha256:b279c3f192c9541046564ba0914db622ec67aa6d74800eb85b1ce14ffd1d4585"},
 ]
 sphinx-rtd-theme = [
     {file = "sphinx_rtd_theme-0.5.2-py2.py3-none-any.whl", hash = "sha256:4a05bdbe8b1446d77a01e20a23ebc6777c74f43237035e76be89699308987d6f"},
