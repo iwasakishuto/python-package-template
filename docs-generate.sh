@@ -49,3 +49,11 @@ logging "make html"
 make html
 logging "mv $CREATED_DIRNAME ../$DOC_DIRNAME"
 mv $CREATED_DIRNAME ../$DOC_DIRNAME
+
+cd $HERE
+whereIam
+for IMG in background.png not-found.png
+do
+  logging "cp $SRC_DIRNAME/_images/$IMG $DOC_DIRNAME/_images/$IMG"
+  cp $SRC_DIRNAME/_images/$IMG $DOC_DIRNAME/_images/$IMG
+done
