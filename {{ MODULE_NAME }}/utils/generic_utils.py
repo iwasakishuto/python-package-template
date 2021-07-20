@@ -5,8 +5,8 @@ import datetime
 
 from typing import List,Any
 
-from .colorings import toRED, toBLUE, toGREEN
-from ._warnings import KeyError
+from ._colorings import toRED, toBLUE, toGREEN
+from ._exceptions import KeyError
 
 NoneType = type(None)
 
@@ -36,13 +36,13 @@ def handleKeyError(lst:List[Any], **kwargs):
 
 def class2str(class_:object) -> str:
     """Convert class to str.
-    
+
     Args:
         class_ (object): class object
 
     Returns:
         str : Class name.
-        
+
     Examples:
         >>> from {{ MODULE_NAME }}.utils import class2str
         >>> class2str(str)
